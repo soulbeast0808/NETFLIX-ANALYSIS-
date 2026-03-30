@@ -1,0 +1,35 @@
+-- Netflix Data Analysis SQL Queries
+
+-- 1. Total Titles
+SELECT COUNT(*) AS total_titles FROM netflix;
+
+-- 2. Movies vs TV Shows
+SELECT type, COUNT(*) AS total
+FROM netflix
+GROUP BY type;
+
+-- 3. Top Countries
+SELECT country, COUNT(*) AS total
+FROM netflix
+GROUP BY country
+ORDER BY total DESC
+LIMIT 10;
+
+-- 4. Content by Release Year
+SELECT release_year, COUNT(*) AS total
+FROM netflix
+GROUP BY release_year
+ORDER BY release_year;
+
+-- 5. Most Popular Genres
+SELECT listed_in, COUNT(*) AS total
+FROM netflix
+WHERE listed_in IS NOT NULL
+GROUP BY listed_in
+ORDER BY total DESC
+LIMIT 10;
+
+-- 6. Average Duration
+SELECT type, AVG(duration_num) AS avg_duration
+FROM netflix
+GROUP BY type;
